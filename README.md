@@ -1,14 +1,14 @@
 # Silurian TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ffern-demo%2Fsilurian-ts)
-[![npm shield](https://img.shields.io/npm/v/fixa-ai)](https://www.npmjs.com/package/fixa-ai)
+[![npm shield](https://img.shields.io/npm/v/silurian-ai)](https://www.npmjs.com/package/silurian-ai)
 
 The Silurian TypeScript library provides convenient access to the Silurian API from TypeScript.
 
 ## Installation
 
 ```sh
-npm i -s fixa-ai
+npm i -s silurian-ai
 ```
 
 ## Reference
@@ -20,7 +20,7 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```typescript
-import { SilurianClient } from "fixa-ai";
+import { SilurianClient } from "silurian-ai";
 
 const client = new SilurianClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
 await client.forecasts.createDaily({
@@ -35,7 +35,7 @@ The SDK exports all request and response types as TypeScript interfaces. Simply 
 following namespace:
 
 ```typescript
-import { Silurian } from "fixa-ai";
+import { Silurian } from "silurian-ai";
 
 const request: Silurian.ForecastsCreateDailyRequest = {
     ...
@@ -48,7 +48,7 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { SilurianError } from "fixa-ai";
+import { SilurianError } from "silurian-ai";
 
 try {
     await client.forecasts.createDaily(...);
@@ -135,7 +135,7 @@ The SDK provides a way for your to customize the underlying HTTP client / Fetch 
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { SilurianClient } from "fixa-ai";
+import { SilurianClient } from "silurian-ai";
 
 const client = new SilurianClient({
     ...

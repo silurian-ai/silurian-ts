@@ -1,6 +1,6 @@
 {
-    "name": "fixa-ai",
-    "version": "0.0.1-alpha0",
+    "name": "silurian-ai",
+    "version": "0.0.1-alpha1",
     "private": false,
     "repository": "https://github.com/fern-demo/silurian-ts",
     "main": "./index.js",
