@@ -68,8 +68,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian-ai",
-                "X-Fern-SDK-Version": "0.0.1-alpha3",
-                "User-Agent": "silurian-ai/0.0.1-alpha3",
+                "X-Fern-SDK-Version": "0.0.1-alpha4",
+                "User-Agent": "silurian-ai/0.0.1-alpha4",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -152,8 +152,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian-ai",
-                "X-Fern-SDK-Version": "0.0.1-alpha3",
-                "User-Agent": "silurian-ai/0.0.1-alpha3",
+                "X-Fern-SDK-Version": "0.0.1-alpha4",
+                "User-Agent": "silurian-ai/0.0.1-alpha4",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

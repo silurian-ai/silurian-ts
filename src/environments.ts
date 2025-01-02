@@ -3,7 +3,7 @@
  */
 
 export const SilurianEnvironment = {
-    Production: "https://earth.weather.silurian.ai",
+    Production: "https://earth.weather.silurian.ai/api/v1",
 } as const;
 
 export type SilurianEnvironment = typeof SilurianEnvironment.Production;

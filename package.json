@@ -1,6 +1,6 @@
 {
     "name": "silurian-ai",
-    "version": "0.0.1-alpha3",
+    "version": "0.0.1-alpha4",
     "private": false,
     "repository": "https://github.com/fern-demo/silurian-ts",
     "main": "./index.js",
