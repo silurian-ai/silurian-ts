@@ -22,7 +22,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { SilurianClient } from "silurian-ai";
 
-const client = new SilurianClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
+const client = new SilurianClient({ apiKey: "YOUR_API_KEY" });
 await client.forecasts.createDaily({
     latitude: 1.1,
     longitude: 1.1,
