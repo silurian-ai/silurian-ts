@@ -1,2 +1,2 @@
-export { SilurianError } from "./SilurianError";
-export { SilurianTimeoutError } from "./SilurianTimeoutError";
+export { EarthError } from "./EarthError";
+export { EarthTimeoutError } from "./EarthTimeoutError";

@@ -1,4 +1,4 @@
-export * as Silurian from "./api";
-export { SilurianClient } from "./Client";
-export { SilurianEnvironment } from "./environments";
-export { SilurianError, SilurianTimeoutError } from "./errors";
+export * as Earth from "./api";
+export { EarthClient } from "./Client";
+export { EarthEnvironment } from "./environments";
+export { EarthError, EarthTimeoutError } from "./errors";

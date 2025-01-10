@@ -3,10 +3,10 @@
  */
 
 import * as errors from "../../errors/index";
-import * as Silurian from "../index";
+import * as Earth from "../index";
 
-export class UnprocessableEntityError extends errors.SilurianError {
-    constructor(body: Silurian.HttpValidationError) {
+export class UnprocessableEntityError extends errors.EarthError {
+    constructor(body: Earth.HttpValidationError) {
         super({
             message: "UnprocessableEntityError",
             statusCode: 422,

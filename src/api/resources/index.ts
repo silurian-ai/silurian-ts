@@ -1,2 +1,1 @@
-export * as forecasts from "./forecasts";
-export * from "./forecasts/client/requests";
+export * as weather from "./weather";
