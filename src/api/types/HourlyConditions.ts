@@ -7,12 +7,15 @@ import * as Earth from "../index";
 export interface HourlyConditions {
     timestamp: string;
     temperature?: number;
-    dewpoint_temperature?: number;
     precipitation_accumulation?: number;
+    precipitation_probability?: number;
     precipitation_type?: Earth.PrecipitationType;
-    snowfall?: number;
+    snowfall_accumulation?: number;
+    cloud_cover?: number;
+    humidity?: number;
     wind_speed?: number;
     wind_direction?: number;
+    dewpoint_temperature?: number;
     pressure?: number;
     downward_solar_radiation?: number;
     wind_speed_100m?: number;

@@ -5,15 +5,16 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { Forecast } from "../resources/forecast/client/Client";
-import { Past } from "../resources/past/client/Client";
 
 export declare namespace Weather {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.EarthEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -27,15 +28,10 @@ export declare namespace Weather {
 
 export class Weather {
     protected _forecast: Forecast | undefined;
-    protected _past: Past | undefined;
 
     constructor(protected readonly _options: Weather.Options) {}
 
     public get forecast(): Forecast {
         return (this._forecast ??= new Forecast(this._options));
-    }
-
-    public get past(): Past {
-        return (this._past ??= new Past(this._options));
     }
 }

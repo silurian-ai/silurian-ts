@@ -9,12 +9,14 @@ import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
 export declare namespace Forecast {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.EarthEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -31,6 +33,8 @@ export class Forecast {
 
     /**
      * Get daily weather forecast for a specific location
+     * Only allowing local timezone aggregations for now since
+     * it is unclear how exactly users will understand "UTC".
      *
      * @param {Earth.weather.ForecastDailyRequest} request
      * @param {Forecast.RequestOptions} requestOptions - Request-specific configuration.
@@ -45,10 +49,10 @@ export class Forecast {
      */
     public async daily(
         request: Earth.weather.ForecastDailyRequest,
-        requestOptions?: Forecast.RequestOptions
+        requestOptions?: Forecast.RequestOptions,
     ): Promise<Earth.DailyWeatherResponse> {
         const { latitude, longitude, timezone, units } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
         _queryParams["longitude"] = longitude.toString();
         if (timezone != null) {
@@ -61,15 +65,17 @@ export class Forecast {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.EarthEnvironment.Production,
-                "forecast/daily"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.EarthEnvironment.Production,
+                "forecast/daily",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.1-alpha5",
-                "User-Agent": "silurian/0.0.1-alpha5",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "silurian/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -129,10 +135,10 @@ export class Forecast {
      */
     public async hourly(
         request: Earth.weather.ForecastHourlyRequest,
-        requestOptions?: Forecast.RequestOptions
+        requestOptions?: Forecast.RequestOptions,
     ): Promise<Earth.HourlyWeatherResponse> {
         const { latitude, longitude, timezone, units } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
         _queryParams["longitude"] = longitude.toString();
         if (timezone != null) {
@@ -145,15 +151,17 @@ export class Forecast {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.EarthEnvironment.Production,
-                "forecast/hourly"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.EarthEnvironment.Production,
+                "forecast/hourly",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.1-alpha5",
-                "User-Agent": "silurian/0.0.1-alpha5",
+                "X-Fern-SDK-Version": "0.0.1",
+                "User-Agent": "silurian/0.0.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
