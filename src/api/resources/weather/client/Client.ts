@@ -5,6 +5,7 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { Forecast } from "../resources/forecast/client/Client";
+import { Past } from "../resources/past/client/Client";
 
 export declare namespace Weather {
     export interface Options {
@@ -28,10 +29,15 @@ export declare namespace Weather {
 
 export class Weather {
     protected _forecast: Forecast | undefined;
+    protected _past: Past | undefined;
 
     constructor(protected readonly _options: Weather.Options) {}
 
     public get forecast(): Forecast {
         return (this._forecast ??= new Forecast(this._options));
+    }
+
+    public get past(): Past {
+        return (this._past ??= new Past(this._options));
     }
 }
