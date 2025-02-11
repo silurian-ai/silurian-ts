@@ -9,3 +9,4 @@ export * from "./PrecipitationType";
 export * from "./Timezone";
 export * from "./Units";
 export * from "./ValidationError";
+export * from "./WeatherCode";

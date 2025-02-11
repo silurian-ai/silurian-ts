@@ -20,4 +20,6 @@ export interface HourlyConditions {
     downward_solar_radiation?: number;
     wind_speed_100m?: number;
     wind_direction_100m?: number;
+    feels_like_temperature?: number;
+    weather_code?: Earth.WeatherCode;
 }

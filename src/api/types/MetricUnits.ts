@@ -5,6 +5,7 @@
 export interface MetricUnits {
     elevation?: string;
     temperature?: string;
+    feels_like_temperature?: string;
     precipitation_accumulation?: string;
     precipitation_probability?: string;
     snowfall_accumulation?: string;

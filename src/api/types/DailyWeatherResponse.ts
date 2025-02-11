@@ -7,6 +7,7 @@ import * as Earth from "../index";
 export interface DailyWeatherResponse {
     latitude: number;
     longitude: number;
+    forecast_time: string;
     timezone: string;
     utc_offset: number;
     elevation?: number;
