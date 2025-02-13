@@ -16,4 +16,5 @@ export interface ForecastHourlyRequest {
     longitude: number;
     timezone?: Earth.Timezone;
     units?: Earth.Units;
+    include_past?: boolean;
 }

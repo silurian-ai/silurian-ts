@@ -74,8 +74,8 @@ export class Forecast {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "silurian/0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
+                "User-Agent": "silurian/0.0.4",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -137,7 +137,7 @@ export class Forecast {
         request: Earth.weather.ForecastHourlyRequest,
         requestOptions?: Forecast.RequestOptions,
     ): Promise<Earth.HourlyWeatherResponse> {
-        const { latitude, longitude, timezone, units } = request;
+        const { latitude, longitude, timezone, units, include_past: includePast } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
         _queryParams["longitude"] = longitude.toString();
@@ -147,6 +147,10 @@ export class Forecast {
 
         if (units != null) {
             _queryParams["units"] = units;
+        }
+
+        if (includePast != null) {
+            _queryParams["include_past"] = includePast.toString();
         }
 
         const _response = await core.fetcher({
@@ -160,8 +164,8 @@ export class Forecast {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "silurian/0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
+                "User-Agent": "silurian/0.0.4",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
