@@ -22,6 +22,9 @@ export interface DailyConditions {
     wind_direction_100m?: number;
     feels_like_temperature?: number;
     weather_code?: Earth.WeatherCode;
+    global_horizontal_irradiation?: number;
+    direct_normal_irradiation?: number;
+    diffuse_horizontal_irradiation?: number;
     max_temperature?: number;
     min_temperature?: number;
 }

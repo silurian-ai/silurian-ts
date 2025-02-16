@@ -18,4 +18,7 @@ export interface MetricUnits {
     downward_solar_radiation?: string;
     wind_speed_100m?: string;
     wind_direction_100m?: string;
+    global_horizontal_irradiation?: string;
+    direct_normal_irradiation?: string;
+    diffuse_horizontal_irradiation?: string;
 }
