@@ -5,6 +5,7 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import { Forecast } from "../resources/forecast/client/Client";
+import { Experimental } from "../resources/experimental/client/Client";
 import { Past } from "../resources/past/client/Client";
 
 export declare namespace Weather {
@@ -29,12 +30,17 @@ export declare namespace Weather {
 
 export class Weather {
     protected _forecast: Forecast | undefined;
+    protected _experimental: Experimental | undefined;
     protected _past: Past | undefined;
 
     constructor(protected readonly _options: Weather.Options) {}
 
     public get forecast(): Forecast {
         return (this._forecast ??= new Forecast(this._options));
+    }
+
+    public get experimental(): Experimental {
+        return (this._experimental ??= new Experimental(this._options));
     }
 
     public get past(): Past {

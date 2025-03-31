@@ -1,5 +1,7 @@
 export * from "./DailyConditions";
 export * from "./DailyWeatherResponse";
+export * from "./GftusHourlyConditions";
+export * from "./GftusHourlyWeatherResponse";
 export * from "./HttpValidationError";
 export * from "./HourlyConditions";
 export * from "./HourlyWeatherResponse";
