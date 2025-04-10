@@ -11,10 +11,6 @@ export interface GftusHourlyWeatherResponse {
     timezone: string;
     utc_offset: number;
     elevation?: number;
-    units: GftusHourlyWeatherResponse.Units;
+    units: Earth.GftusBaseUnits;
     hourly: Earth.GftusHourlyConditions[];
-}
-
-export namespace GftusHourlyWeatherResponse {
-    export type Units = Earth.MetricUnits | Earth.ImperialUnits;
 }

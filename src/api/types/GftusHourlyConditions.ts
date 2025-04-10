@@ -7,11 +7,15 @@ export interface GftusHourlyConditions {
     temperature?: number;
     humidity?: number;
     wind_speed?: number;
+    wind_gust?: number;
     wind_direction?: number;
     wind_speed_80m?: number;
     wind_direction_80m?: number;
     dewpoint_temperature?: number;
     feels_like_temperature?: number;
     pressure?: number;
+    precipitation_accumulation?: number;
+    precipitation_probability?: number;
+    cloud_cover?: number;
     downward_solar_radiation?: number;
 }
