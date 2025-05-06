@@ -4,9 +4,6 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import * as Earth from "./api/index";
-import urlJoin from "url-join";
-import * as errors from "./errors/index";
 import { Cyclone } from "./api/resources/cyclone/client/Client";
 import { Weather } from "./api/resources/weather/client/Client";
 
@@ -42,96 +39,5 @@ export class EarthClient {
 
     public get weather(): Weather {
         return (this._weather ??= new Weather(this._options));
-    }
-
-    /**
-     * Get hourly weather forecast for a specific location and time
-     *
-     * @param {Earth.GetHourlyForecastExperimentalExtendedGetRequest} request
-     * @param {EarthClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Earth.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.getHourlyForecastExperimentalExtendedGet({
-     *         latitude: 47.6061,
-     *         longitude: -122.3328
-     *     })
-     */
-    public async getHourlyForecastExperimentalExtendedGet(
-        request: Earth.GetHourlyForecastExperimentalExtendedGetRequest,
-        requestOptions?: EarthClient.RequestOptions,
-    ): Promise<Earth.HourlyWeatherResponse> {
-        const { latitude, longitude, timezone, units } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams["latitude"] = latitude.toString();
-        _queryParams["longitude"] = longitude.toString();
-        if (timezone != null) {
-            _queryParams["timezone"] = timezone;
-        }
-
-        if (units != null) {
-            _queryParams["units"] = units;
-        }
-
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.EarthEnvironment.Production,
-                "experimental/extended",
-            ),
-            method: "GET",
-            headers: {
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.10",
-                "User-Agent": "silurian/0.0.10",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as Earth.HourlyWeatherResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
-                default:
-                    throw new errors.EarthError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.EarthError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /experimental/extended.");
-            case "unknown":
-                throw new errors.EarthError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    protected async _getCustomAuthorizationHeaders() {
-        const apiKeyValue = await core.Supplier.get(this._options.apiKey);
-        return { "X-API-KEY": apiKeyValue };
     }
 }

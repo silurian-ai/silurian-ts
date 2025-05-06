@@ -23,10 +23,7 @@ Instantiate and use the client with the following:
 import { EarthClient } from "silurian";
 
 const client = new EarthClient({ apiKey: "YOUR_API_KEY" });
-await client.getHourlyForecastExperimentalExtendedGet({
-    latitude: 47.6061,
-    longitude: -122.3328,
-});
+await client.cyclone.queryForecasts();
 ```
 
 ## Request And Response Types
@@ -51,7 +48,7 @@ will be thrown.
 import { EarthError } from "silurian";
 
 try {
-    await client.getHourlyForecastExperimentalExtendedGet(...);
+    await client.cyclone.queryForecasts(...);
 } catch (err) {
     if (err instanceof EarthError) {
         console.log(err.statusCode);
@@ -68,7 +65,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.getHourlyForecastExperimentalExtendedGet(..., {
+const response = await client.cyclone.queryForecasts(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -90,7 +87,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.getHourlyForecastExperimentalExtendedGet(..., {
+const response = await client.cyclone.queryForecasts(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -100,7 +97,7 @@ const response = await client.getHourlyForecastExperimentalExtendedGet(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.getHourlyForecastExperimentalExtendedGet(..., {
+const response = await client.cyclone.queryForecasts(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -111,7 +108,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.getHourlyForecastExperimentalExtendedGet(..., {
+const response = await client.cyclone.queryForecasts(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
