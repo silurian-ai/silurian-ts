@@ -1,6 +1,6 @@
 {
     "name": "silurian",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "private": false,
     "repository": "https://github.com/silurian-ai/silurian-ts",
     "main": "./index.js",
