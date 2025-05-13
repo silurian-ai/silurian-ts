@@ -5,6 +5,8 @@ export * from "./DailyWeatherResponse";
 export * from "./FeatureGeometry";
 export * from "./Feature";
 export * from "./FeatureCollection";
+export * from "./ForecastRow";
+export * from "./ForecastTable";
 export * from "./GftusBaseUnits";
 export * from "./GftusHourlyConditions";
 export * from "./GftusHourlyWeatherResponse";

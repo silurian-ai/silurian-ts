@@ -1,3 +1,2 @@
-export * as cyclone from "./cyclone";
+export * as cyclones from "./cyclones";
 export * as weather from "./weather";
-export * from "./cyclone/client/requests";

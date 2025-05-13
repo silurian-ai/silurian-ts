@@ -1,8 +1,8 @@
 # Reference
 
-## Cyclone
+## Cyclones Forecasts
 
-<details><summary><code>client.cyclone.<a href="/src/api/resources/cyclone/client/Client.ts">queryForecasts</a>({ ...params }) -> Earth.CycloneForecastResponse[]</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">list</a>({ ...params }) -> Earth.CycloneForecastResponse[]</code></summary>
 <dl>
 <dd>
 
@@ -30,7 +30,7 @@ Query the available cyclone forecasts for a particular time
 <dd>
 
 ```typescript
-await client.cyclone.queryForecasts();
+await client.cyclones.forecasts.list();
 ```
 
 </dd>
@@ -46,7 +46,7 @@ await client.cyclone.queryForecasts();
 <dl>
 <dd>
 
-**request:** `Earth.QueryForecastsCycloneForecastsGetRequest`
+**request:** `Earth.cyclones.ForecastsListRequest`
 
 </dd>
 </dl>
@@ -54,7 +54,7 @@ await client.cyclone.queryForecasts();
 <dl>
 <dd>
 
-**requestOptions:** `Cyclone.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions`
 
 </dd>
 </dl>
@@ -65,7 +65,7 @@ await client.cyclone.queryForecasts();
 </dl>
 </details>
 
-<details><summary><code>client.cyclone.<a href="/src/api/resources/cyclone/client/Client.ts">getForecastTrack</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">track</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -93,7 +93,7 @@ Get cyclone tracks in GeoJSON (MF-GeoJSON) format
 <dd>
 
 ```typescript
-await client.cyclone.getForecastTrack("storm_id");
+await client.cyclones.forecasts.track("storm_id");
 ```
 
 </dd>
@@ -117,7 +117,7 @@ await client.cyclone.getForecastTrack("storm_id");
 <dl>
 <dd>
 
-**request:** `Earth.GetForecastTrackCycloneForecastsStormIdTrackGetRequest`
+**request:** `Earth.cyclones.ForecastsTrackRequest`
 
 </dd>
 </dl>
@@ -125,7 +125,7 @@ await client.cyclone.getForecastTrack("storm_id");
 <dl>
 <dd>
 
-**requestOptions:** `Cyclone.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions`
 
 </dd>
 </dl>
@@ -136,7 +136,7 @@ await client.cyclone.getForecastTrack("storm_id");
 </dl>
 </details>
 
-<details><summary><code>client.cyclone.<a href="/src/api/resources/cyclone/client/Client.ts">getForecastCone</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">cone</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -164,7 +164,7 @@ Get cyclone forecast cone in GeoJSON format
 <dd>
 
 ```typescript
-await client.cyclone.getForecastCone("storm_id");
+await client.cyclones.forecasts.cone("storm_id");
 ```
 
 </dd>
@@ -188,7 +188,7 @@ await client.cyclone.getForecastCone("storm_id");
 <dl>
 <dd>
 
-**request:** `Earth.GetForecastConeCycloneForecastsStormIdConeGetRequest`
+**request:** `Earth.cyclones.ForecastsConeRequest`
 
 </dd>
 </dl>
@@ -196,7 +196,7 @@ await client.cyclone.getForecastCone("storm_id");
 <dl>
 <dd>
 
-**requestOptions:** `Cyclone.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions`
 
 </dd>
 </dl>
@@ -469,6 +469,63 @@ await client.weather.experimental.regional.usa({
 <dd>
 
 **requestOptions:** `Regional.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Weather Experimental Personalized
+
+<details><summary><code>client.weather.experimental.personalized.<a href="/src/api/resources/weather/resources/experimental/resources/personalized/client/Client.ts">totalEnergies</a>() -> Earth.ForecastTable</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return asset‑level forecast data as a JSON ForecastTable.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.weather.experimental.personalized.totalEnergies();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Personalized.RequestOptions`
 
 </dd>
 </dl>
