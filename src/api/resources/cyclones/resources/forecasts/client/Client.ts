@@ -65,14 +65,14 @@ export class Forecasts {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.EarthEnvironment.Production,
-                "cyclone/forecasts",
+                "cyclones/forecasts",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.12",
-                "User-Agent": "silurian/0.0.12",
+                "X-Fern-SDK-Version": "0.0.13",
+                "User-Agent": "silurian/0.0.13",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -108,7 +108,7 @@ export class Forecasts {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /cyclone/forecasts.");
+                throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /cyclones/forecasts.");
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
@@ -133,10 +133,14 @@ export class Forecasts {
         request: Earth.cyclones.ForecastsTrackRequest = {},
         requestOptions?: Forecasts.RequestOptions,
     ): Promise<Earth.FeatureCollection> {
-        const { time, model } = request;
+        const { time, max_lead_time: maxLeadTime, model } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (time != null) {
             _queryParams["time"] = time;
+        }
+
+        if (maxLeadTime != null) {
+            _queryParams["max_lead_time"] = maxLeadTime;
         }
 
         if (model != null) {
@@ -148,14 +152,14 @@ export class Forecasts {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.EarthEnvironment.Production,
-                `cyclone/forecasts/${encodeURIComponent(stormId)}/track`,
+                `cyclones/forecasts/${encodeURIComponent(stormId)}/track`,
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.12",
-                "User-Agent": "silurian/0.0.12",
+                "X-Fern-SDK-Version": "0.0.13",
+                "User-Agent": "silurian/0.0.13",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -192,7 +196,7 @@ export class Forecasts {
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError(
-                    "Timeout exceeded when calling GET /cyclone/forecasts/{storm_id}/track.",
+                    "Timeout exceeded when calling GET /cyclones/forecasts/{storm_id}/track.",
                 );
             case "unknown":
                 throw new errors.EarthError({
@@ -218,14 +222,14 @@ export class Forecasts {
         request: Earth.cyclones.ForecastsConeRequest = {},
         requestOptions?: Forecasts.RequestOptions,
     ): Promise<Earth.FeatureCollection> {
-        const { time, lead_time: leadTime, smooth_cone: smoothCone, model } = request;
+        const { time, max_lead_time: maxLeadTime, smooth_cone: smoothCone, model } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (time != null) {
             _queryParams["time"] = time;
         }
 
-        if (leadTime != null) {
-            _queryParams["lead_time"] = leadTime;
+        if (maxLeadTime != null) {
+            _queryParams["max_lead_time"] = maxLeadTime;
         }
 
         if (smoothCone != null) {
@@ -241,14 +245,14 @@ export class Forecasts {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.EarthEnvironment.Production,
-                `cyclone/forecasts/${encodeURIComponent(stormId)}/cone`,
+                `cyclones/forecasts/${encodeURIComponent(stormId)}/cone`,
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.12",
-                "User-Agent": "silurian/0.0.12",
+                "X-Fern-SDK-Version": "0.0.13",
+                "User-Agent": "silurian/0.0.13",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -285,7 +289,7 @@ export class Forecasts {
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError(
-                    "Timeout exceeded when calling GET /cyclone/forecasts/{storm_id}/cone.",
+                    "Timeout exceeded when calling GET /cyclones/forecasts/{storm_id}/cone.",
                 );
             case "unknown":
                 throw new errors.EarthError({

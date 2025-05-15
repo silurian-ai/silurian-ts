@@ -13,7 +13,10 @@ export interface ForecastsConeRequest {
      * *Default value: (current time) - Default time zone: UTC*
      */
     time?: string;
-    lead_time?: string;
+    /**
+     * *Value must be > P0D*
+     */
+    max_lead_time?: string;
     smooth_cone?: boolean;
     model?: Earth.ModelName;
 }

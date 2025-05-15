@@ -7,10 +7,10 @@ import * as Earth from "../index";
 export interface CycloneForecastResponse {
     storm_id: string;
     storm_name: string;
-    type: string;
+    type?: string;
     category: number;
     position: Earth.GeoLocation;
     forecast_time: string;
     forecast_source_info: string;
-    last_updated: string;
+    forecast_last_updated: string;
 }
