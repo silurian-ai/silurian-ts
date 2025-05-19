@@ -45,10 +45,17 @@ export class Regional {
      *         longitude: -122.3328
      *     })
      */
-    public async usa(
+    public usa(
         request: Earth.weather.experimental.RegionalUsaRequest,
         requestOptions?: Regional.RequestOptions,
-    ): Promise<Earth.GftusHourlyWeatherResponse> {
+    ): core.HttpResponsePromise<Earth.GftusHourlyWeatherResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__usa(request, requestOptions));
+    }
+
+    private async __usa(
+        request: Earth.weather.experimental.RegionalUsaRequest,
+        requestOptions?: Regional.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.GftusHourlyWeatherResponse>> {
         const { latitude, longitude, timezone, units } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
@@ -72,8 +79,8 @@ export class Regional {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -87,17 +94,21 @@ export class Regional {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.GftusHourlyWeatherResponse;
+            return { data: _response.body as Earth.GftusHourlyWeatherResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -107,12 +118,14 @@ export class Regional {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /experimental/regional/usa.");
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

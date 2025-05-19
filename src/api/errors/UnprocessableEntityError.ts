@@ -4,13 +4,15 @@
 
 import * as errors from "../../errors/index";
 import * as Earth from "../index";
+import * as core from "../../core";
 
 export class UnprocessableEntityError extends errors.EarthError {
-    constructor(body: Earth.HttpValidationError) {
+    constructor(body: Earth.HttpValidationError, rawResponse?: core.RawResponse) {
         super({
             message: "UnprocessableEntityError",
             statusCode: 422,
             body: body,
+            rawResponse: rawResponse,
         });
         Object.setPrototypeOf(this, UnprocessableEntityError.prototype);
     }

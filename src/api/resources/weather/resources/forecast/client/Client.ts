@@ -47,10 +47,17 @@ export class Forecast {
      *         longitude: -122.3328
      *     })
      */
-    public async daily(
+    public daily(
         request: Earth.weather.ForecastDailyRequest,
         requestOptions?: Forecast.RequestOptions,
-    ): Promise<Earth.DailyWeatherResponse> {
+    ): core.HttpResponsePromise<Earth.DailyWeatherResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__daily(request, requestOptions));
+    }
+
+    private async __daily(
+        request: Earth.weather.ForecastDailyRequest,
+        requestOptions?: Forecast.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.DailyWeatherResponse>> {
         const { latitude, longitude, timezone, units } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
@@ -74,8 +81,8 @@ export class Forecast {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -89,17 +96,21 @@ export class Forecast {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.DailyWeatherResponse;
+            return { data: _response.body as Earth.DailyWeatherResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -109,12 +120,14 @@ export class Forecast {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /forecast/daily.");
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -133,10 +146,17 @@ export class Forecast {
      *         longitude: -122.3328
      *     })
      */
-    public async hourly(
+    public hourly(
         request: Earth.weather.ForecastHourlyRequest,
         requestOptions?: Forecast.RequestOptions,
-    ): Promise<Earth.HourlyWeatherResponse> {
+    ): core.HttpResponsePromise<Earth.HourlyWeatherResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__hourly(request, requestOptions));
+    }
+
+    private async __hourly(
+        request: Earth.weather.ForecastHourlyRequest,
+        requestOptions?: Forecast.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.HourlyWeatherResponse>> {
         const { latitude, longitude, timezone, units, include_past: includePast } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["latitude"] = latitude.toString();
@@ -164,8 +184,8 @@ export class Forecast {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -179,17 +199,21 @@ export class Forecast {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.HourlyWeatherResponse;
+            return { data: _response.body as Earth.HourlyWeatherResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -199,12 +223,14 @@ export class Forecast {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /forecast/hourly.");
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

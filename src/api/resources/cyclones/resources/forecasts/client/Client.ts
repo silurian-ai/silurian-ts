@@ -42,10 +42,17 @@ export class Forecasts {
      * @example
      *     await client.cyclones.forecasts.list()
      */
-    public async list(
+    public list(
         request: Earth.cyclones.ForecastsListRequest = {},
         requestOptions?: Forecasts.RequestOptions,
-    ): Promise<Earth.CycloneForecastResponse[]> {
+    ): core.HttpResponsePromise<Earth.CycloneForecastResponse[]> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: Earth.cyclones.ForecastsListRequest = {},
+        requestOptions?: Forecasts.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.CycloneForecastResponse[]>> {
         const { time, min_storm_category: minStormCategory, model } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (time != null) {
@@ -71,8 +78,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -86,17 +93,21 @@ export class Forecasts {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.CycloneForecastResponse[];
+            return { data: _response.body as Earth.CycloneForecastResponse[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -106,12 +117,14 @@ export class Forecasts {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError("Timeout exceeded when calling GET /cyclones/forecasts.");
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -128,11 +141,19 @@ export class Forecasts {
      * @example
      *     await client.cyclones.forecasts.track("storm_id")
      */
-    public async track(
+    public track(
         stormId: string,
         request: Earth.cyclones.ForecastsTrackRequest = {},
         requestOptions?: Forecasts.RequestOptions,
-    ): Promise<Earth.FeatureCollection> {
+    ): core.HttpResponsePromise<Earth.FeatureCollection> {
+        return core.HttpResponsePromise.fromPromise(this.__track(stormId, request, requestOptions));
+    }
+
+    private async __track(
+        stormId: string,
+        request: Earth.cyclones.ForecastsTrackRequest = {},
+        requestOptions?: Forecasts.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.FeatureCollection>> {
         const { time, max_lead_time: maxLeadTime, model } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (time != null) {
@@ -158,8 +179,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -173,17 +194,21 @@ export class Forecasts {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.FeatureCollection;
+            return { data: _response.body as Earth.FeatureCollection, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -193,6 +218,7 @@ export class Forecasts {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError(
@@ -201,6 +227,7 @@ export class Forecasts {
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -217,11 +244,19 @@ export class Forecasts {
      * @example
      *     await client.cyclones.forecasts.cone("storm_id")
      */
-    public async cone(
+    public cone(
         stormId: string,
         request: Earth.cyclones.ForecastsConeRequest = {},
         requestOptions?: Forecasts.RequestOptions,
-    ): Promise<Earth.FeatureCollection> {
+    ): core.HttpResponsePromise<Earth.FeatureCollection> {
+        return core.HttpResponsePromise.fromPromise(this.__cone(stormId, request, requestOptions));
+    }
+
+    private async __cone(
+        stormId: string,
+        request: Earth.cyclones.ForecastsConeRequest = {},
+        requestOptions?: Forecasts.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.FeatureCollection>> {
         const { time, max_lead_time: maxLeadTime, smooth_cone: smoothCone, model } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (time != null) {
@@ -251,8 +286,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -266,17 +301,21 @@ export class Forecasts {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.FeatureCollection;
+            return { data: _response.body as Earth.FeatureCollection, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new Earth.UnprocessableEntityError(_response.error.body as Earth.HttpValidationError);
+                    throw new Earth.UnprocessableEntityError(
+                        _response.error.body as Earth.HttpValidationError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -286,6 +325,7 @@ export class Forecasts {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError(
@@ -294,6 +334,7 @@ export class Forecasts {
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

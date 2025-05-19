@@ -39,7 +39,13 @@ export class Personalized {
      * @example
      *     await client.weather.experimental.personalized.totalEnergies()
      */
-    public async totalEnergies(requestOptions?: Personalized.RequestOptions): Promise<Earth.ForecastTable> {
+    public totalEnergies(requestOptions?: Personalized.RequestOptions): core.HttpResponsePromise<Earth.ForecastTable> {
+        return core.HttpResponsePromise.fromPromise(this.__totalEnergies(requestOptions));
+    }
+
+    private async __totalEnergies(
+        requestOptions?: Personalized.RequestOptions,
+    ): Promise<core.WithRawResponse<Earth.ForecastTable>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -51,8 +57,8 @@ export class Personalized {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.13",
-                "User-Agent": "silurian/0.0.13",
+                "X-Fern-SDK-Version": "0.0.14",
+                "User-Agent": "silurian/0.0.14",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -65,13 +71,14 @@ export class Personalized {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Earth.ForecastTable;
+            return { data: _response.body as Earth.ForecastTable, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.EarthError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -80,6 +87,7 @@ export class Personalized {
                 throw new errors.EarthError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.EarthTimeoutError(
@@ -88,6 +96,7 @@ export class Personalized {
             case "unknown":
                 throw new errors.EarthError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
