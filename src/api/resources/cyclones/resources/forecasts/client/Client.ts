@@ -78,8 +78,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.15",
-                "User-Agent": "silurian/0.0.15",
+                "X-Fern-SDK-Version": "0.0.16",
+                "User-Agent": "silurian/0.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -179,8 +179,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.15",
-                "User-Agent": "silurian/0.0.15",
+                "X-Fern-SDK-Version": "0.0.16",
+                "User-Agent": "silurian/0.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -286,8 +286,8 @@ export class Forecasts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "silurian",
-                "X-Fern-SDK-Version": "0.0.15",
-                "User-Agent": "silurian/0.0.15",
+                "X-Fern-SDK-Version": "0.0.16",
+                "User-Agent": "silurian/0.0.16",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

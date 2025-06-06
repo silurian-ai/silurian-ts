@@ -13,7 +13,7 @@ npm i -s silurian
 
 ## Reference
 
-A full reference for this library is available [here](./reference.md).
+A full reference for this library is available [here](https://github.com/silurian-ai/silurian-ts/blob/HEAD/./reference.md).
 
 ## Usage
 
