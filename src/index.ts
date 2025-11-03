@@ -1,4 +1,5 @@
-export * as Earth from "./api";
-export { EarthClient } from "./Client";
-export { EarthEnvironment } from "./environments";
-export { EarthError, EarthTimeoutError } from "./errors";
+export * as Earth from "./api/index.js";
+export type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
+export { EarthClient } from "./Client.js";
+export { EarthEnvironment } from "./environments.js";
+export { EarthError, EarthTimeoutError } from "./errors/index.js";

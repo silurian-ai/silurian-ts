@@ -1,2 +1,2 @@
-export * as forecast from "./forecast";
-export * from "./forecast/client/requests";
+export * from "./forecast/client/requests/index.js";
+export * as forecast from "./forecast/index.js";

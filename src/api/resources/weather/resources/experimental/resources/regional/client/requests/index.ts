@@ -1,1 +1,1 @@
-export { type RegionalUsaRequest } from "./RegionalUsaRequest";
+export type { RegionalUsaRequest } from "./RegionalUsaRequest.js";

@@ -1,2 +1,2 @@
-export { type ForecastDailyRequest } from "./ForecastDailyRequest";
-export { type ForecastHourlyRequest } from "./ForecastHourlyRequest";
+export type { ForecastDailyRequest } from "./ForecastDailyRequest.js";
+export type { ForecastHourlyRequest } from "./ForecastHourlyRequest.js";

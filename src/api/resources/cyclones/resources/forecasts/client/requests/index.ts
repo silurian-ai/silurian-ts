@@ -1,3 +1,3 @@
-export { type ForecastsListRequest } from "./ForecastsListRequest";
-export { type ForecastsTrackRequest } from "./ForecastsTrackRequest";
-export { type ForecastsConeRequest } from "./ForecastsConeRequest";
+export type { ForecastsConeRequest } from "./ForecastsConeRequest.js";
+export type { ForecastsListRequest } from "./ForecastsListRequest.js";
+export type { ForecastsTrackRequest } from "./ForecastsTrackRequest.js";

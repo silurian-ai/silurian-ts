@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsilurian-ai%2Fsilurian-ts)
 [![npm shield](https://img.shields.io/npm/v/silurian)](https://www.npmjs.com/package/silurian)
 
-The Silurian TypeScript library provides convenient access to the Silurian API from TypeScript.
+The Silurian TypeScript library provides convenient access to the Silurian APIs from TypeScript.
 
 ## Installation
 
@@ -23,7 +23,13 @@ Instantiate and use the client with the following:
 import { EarthClient } from "silurian";
 
 const client = new EarthClient({ apiKey: "YOUR_API_KEY" });
-await client.cyclones.forecasts.list();
+await client.weather.past.forecast.hourly({
+    latitude: 47.6061,
+    longitude: -122.3328,
+    time: "2024-01-01T00:00:00Z",
+    timezone: "local",
+    units: "metric"
+});
 ```
 
 ## Request And Response Types
@@ -48,7 +54,7 @@ will be thrown.
 import { EarthError } from "silurian";
 
 try {
-    await client.cyclones.forecasts.list(...);
+    await client.weather.past.forecast.hourly(...);
 } catch (err) {
     if (err instanceof EarthError) {
         console.log(err.statusCode);
@@ -66,9 +72,21 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.cyclones.forecasts.list(..., {
+const response = await client.weather.past.forecast.hourly(..., {
     headers: {
         'X-Custom-Header': 'custom value'
+    }
+});
+```
+
+### Additional Query String Parameters
+
+If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
+
+```typescript
+const response = await client.weather.past.forecast.hourly(..., {
+    queryParams: {
+        'customQueryParamKey': 'custom query param value'
     }
 });
 ```
@@ -88,7 +106,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.cyclones.forecasts.list(..., {
+const response = await client.weather.past.forecast.hourly(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -98,7 +116,7 @@ const response = await client.cyclones.forecasts.list(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.cyclones.forecasts.list(..., {
+const response = await client.weather.past.forecast.hourly(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -109,7 +127,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.cyclones.forecasts.list(..., {
+const response = await client.weather.past.forecast.hourly(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
@@ -121,7 +139,7 @@ The SDK provides access to raw response data, including headers, through the `.w
 The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
 
 ```typescript
-const { data, rawResponse } = await client.cyclones.forecasts.list(...).withRawResponse();
+const { data, rawResponse } = await client.weather.past.forecast.hourly(...).withRawResponse();
 
 console.log(data);
 console.log(rawResponse.headers['X-My-Header']);
@@ -129,8 +147,10 @@ console.log(rawResponse.headers['X-My-Header']);
 
 ### Runtime Compatibility
 
-The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
-runtimes:
+
+The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel

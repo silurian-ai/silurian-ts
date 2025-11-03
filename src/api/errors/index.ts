@@ -1,1 +1,1 @@
-export * from "./UnprocessableEntityError";
+export * from "./UnprocessableEntityError.js";

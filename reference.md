@@ -1,7 +1,5 @@
 # Reference
-
 ## Cyclones Forecasts
-
 <details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">list</a>({ ...params }) -> Earth.CycloneForecastResponse[]</code></summary>
 <dl>
 <dd>
@@ -15,7 +13,6 @@
 <dd>
 
 Query the available cyclone forecasts for a particular time
-
 </dd>
 </dl>
 </dd>
@@ -30,9 +27,13 @@ Query the available cyclone forecasts for a particular time
 <dd>
 
 ```typescript
-await client.cyclones.forecasts.list();
-```
+await client.cyclones.forecasts.list({
+    time: "2024-01-15T09:30:00Z",
+    min_storm_category: 1,
+    model: "OFCL"
+});
 
+```
 </dd>
 </dl>
 </dd>
@@ -46,20 +47,21 @@ await client.cyclones.forecasts.list();
 <dl>
 <dd>
 
-**request:** `Earth.cyclones.ForecastsListRequest`
-
+**request:** `Earth.cyclones.ForecastsListRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -78,7 +80,6 @@ await client.cyclones.forecasts.list();
 <dd>
 
 Get cyclone tracks in GeoJSON (MF-GeoJSON) format
-
 </dd>
 </dl>
 </dd>
@@ -93,9 +94,13 @@ Get cyclone tracks in GeoJSON (MF-GeoJSON) format
 <dd>
 
 ```typescript
-await client.cyclones.forecasts.track("storm_id");
-```
+await client.cyclones.forecasts.track("storm_id", {
+    time: "2024-01-15T09:30:00Z",
+    max_lead_time: "max_lead_time",
+    model: "OFCL"
+});
 
+```
 </dd>
 </dl>
 </dd>
@@ -109,28 +114,29 @@ await client.cyclones.forecasts.track("storm_id");
 <dl>
 <dd>
 
-**stormId:** `string`
-
+**stormId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Earth.cyclones.ForecastsTrackRequest`
-
+**request:** `Earth.cyclones.ForecastsTrackRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -149,7 +155,6 @@ await client.cyclones.forecasts.track("storm_id");
 <dd>
 
 Get cyclone forecast cone in GeoJSON format
-
 </dd>
 </dl>
 </dd>
@@ -164,9 +169,14 @@ Get cyclone forecast cone in GeoJSON format
 <dd>
 
 ```typescript
-await client.cyclones.forecasts.cone("storm_id");
-```
+await client.cyclones.forecasts.cone("storm_id", {
+    time: "2024-01-15T09:30:00Z",
+    max_lead_time: "max_lead_time",
+    smooth_cone: true,
+    model: "OFCL"
+});
 
+```
 </dd>
 </dl>
 </dd>
@@ -180,35 +190,35 @@ await client.cyclones.forecasts.cone("storm_id");
 <dl>
 <dd>
 
-**stormId:** `string`
-
+**stormId:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Earth.cyclones.ForecastsConeRequest`
-
+**request:** `Earth.cyclones.ForecastsConeRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions`
+**requestOptions:** `Forecasts.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Forecast
-
 <details><summary><code>client.weather.forecast.<a href="/src/api/resources/weather/resources/forecast/client/Client.ts">daily</a>({ ...params }) -> Earth.DailyWeatherResponse</code></summary>
 <dl>
 <dd>
@@ -224,7 +234,6 @@ await client.cyclones.forecasts.cone("storm_id");
 Get daily weather forecast for a specific location
 Only allowing local timezone aggregations for now since
 it is unclear how exactly users will understand "UTC".
-
 </dd>
 </dl>
 </dd>
@@ -242,9 +251,11 @@ it is unclear how exactly users will understand "UTC".
 await client.weather.forecast.daily({
     latitude: 47.6061,
     longitude: -122.3328,
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -258,20 +269,21 @@ await client.weather.forecast.daily({
 <dl>
 <dd>
 
-**request:** `Earth.weather.ForecastDailyRequest`
-
+**request:** `Earth.weather.ForecastDailyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions`
+**requestOptions:** `Forecast.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -290,7 +302,6 @@ await client.weather.forecast.daily({
 <dd>
 
 Get hourly weather forecast for a specific location
-
 </dd>
 </dl>
 </dd>
@@ -308,9 +319,12 @@ Get hourly weather forecast for a specific location
 await client.weather.forecast.hourly({
     latitude: 47.6061,
     longitude: -122.3328,
+    timezone: "local",
+    units: "metric",
+    include_past: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -324,27 +338,27 @@ await client.weather.forecast.hourly({
 <dl>
 <dd>
 
-**request:** `Earth.weather.ForecastHourlyRequest`
-
+**request:** `Earth.weather.ForecastHourlyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions`
+**requestOptions:** `Forecast.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Experimental
-
 <details><summary><code>client.weather.experimental.<a href="/src/api/resources/weather/resources/experimental/client/Client.ts">extended</a>({ ...params }) -> Earth.HourlyWeatherResponse</code></summary>
 <dl>
 <dd>
@@ -358,7 +372,6 @@ await client.weather.forecast.hourly({
 <dd>
 
 Get hourly weather forecast for a specific location and time
-
 </dd>
 </dl>
 </dd>
@@ -376,9 +389,11 @@ Get hourly weather forecast for a specific location and time
 await client.weather.experimental.extended({
     latitude: 47.6061,
     longitude: -122.3328,
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -392,27 +407,27 @@ await client.weather.experimental.extended({
 <dl>
 <dd>
 
-**request:** `Earth.weather.ExperimentalExtendedRequest`
-
+**request:** `Earth.weather.ExperimentalExtendedRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Experimental.RequestOptions`
+**requestOptions:** `Experimental.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Experimental Regional
-
 <details><summary><code>client.weather.experimental.regional.<a href="/src/api/resources/weather/resources/experimental/resources/regional/client/Client.ts">usa</a>({ ...params }) -> Earth.GftusHourlyWeatherResponse</code></summary>
 <dl>
 <dd>
@@ -426,7 +441,6 @@ await client.weather.experimental.extended({
 <dd>
 
 Get hourly weather forecast for a specific location and time
-
 </dd>
 </dl>
 </dd>
@@ -444,9 +458,11 @@ Get hourly weather forecast for a specific location and time
 await client.weather.experimental.regional.usa({
     latitude: 47.6061,
     longitude: -122.3328,
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -460,45 +476,30 @@ await client.weather.experimental.regional.usa({
 <dl>
 <dd>
 
-**request:** `Earth.weather.experimental.RegionalUsaRequest`
-
+**request:** `Earth.weather.experimental.RegionalUsaRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Regional.RequestOptions`
+**requestOptions:** `Regional.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Experimental Personalized
-
-<details><summary><code>client.weather.experimental.personalized.<a href="/src/api/resources/weather/resources/experimental/resources/personalized/client/Client.ts">totalEnergies</a>() -> Earth.ForecastTable</code></summary>
+<details><summary><code>client.weather.experimental.personalized.<a href="/src/api/resources/weather/resources/experimental/resources/personalized/client/Client.ts">totalEnergies</a>() -> void</code></summary>
 <dl>
 <dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Return asset‑level forecast data as a JSON ForecastTable.
-
-</dd>
-</dl>
-</dd>
-</dl>
 
 #### 🔌 Usage
 
@@ -510,8 +511,8 @@ Return asset‑level forecast data as a JSON ForecastTable.
 
 ```typescript
 await client.weather.experimental.personalized.totalEnergies();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -525,19 +526,19 @@ await client.weather.experimental.personalized.totalEnergies();
 <dl>
 <dd>
 
-**requestOptions:** `Personalized.RequestOptions`
+**requestOptions:** `Personalized.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Experimental Past Regional
-
 <details><summary><code>client.weather.experimental.past.regional.<a href="/src/api/resources/weather/resources/experimental/resources/past/resources/regional/client/Client.ts">usa</a>({ ...params }) -> Earth.GftusHourlyWeatherResponse</code></summary>
 <dl>
 <dd>
@@ -551,7 +552,6 @@ await client.weather.experimental.personalized.totalEnergies();
 <dd>
 
 Get hourly weather forecast for a specific location and time
-
 </dd>
 </dl>
 </dd>
@@ -570,9 +570,11 @@ await client.weather.experimental.past.regional.usa({
     latitude: 47.6061,
     longitude: -122.3328,
     time: "2024-01-01T00:00:00Z",
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -586,27 +588,27 @@ await client.weather.experimental.past.regional.usa({
 <dl>
 <dd>
 
-**request:** `Earth.weather.experimental.past.RegionalUsaRequest`
-
+**request:** `Earth.weather.experimental.past.RegionalUsaRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Regional.RequestOptions`
+**requestOptions:** `Regional.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Weather Past Forecast
-
 <details><summary><code>client.weather.past.forecast.<a href="/src/api/resources/weather/resources/past/resources/forecast/client/Client.ts">daily</a>({ ...params }) -> Earth.DailyWeatherResponse</code></summary>
 <dl>
 <dd>
@@ -620,7 +622,6 @@ await client.weather.experimental.past.regional.usa({
 <dd>
 
 Get daily weather forecast for a specific location and time
-
 </dd>
 </dl>
 </dd>
@@ -639,9 +640,11 @@ await client.weather.past.forecast.daily({
     latitude: 47.6061,
     longitude: -122.3328,
     time: "2024-01-01T00:00:00Z",
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -655,20 +658,21 @@ await client.weather.past.forecast.daily({
 <dl>
 <dd>
 
-**request:** `Earth.weather.past.ForecastDailyRequest`
-
+**request:** `Earth.weather.past.ForecastDailyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions`
+**requestOptions:** `Forecast.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -687,7 +691,6 @@ await client.weather.past.forecast.daily({
 <dd>
 
 Get hourly weather forecast for a specific location and time
-
 </dd>
 </dl>
 </dd>
@@ -706,9 +709,11 @@ await client.weather.past.forecast.hourly({
     latitude: 47.6061,
     longitude: -122.3328,
     time: "2024-01-01T00:00:00Z",
+    timezone: "local",
+    units: "metric"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -722,20 +727,21 @@ await client.weather.past.forecast.hourly({
 <dl>
 <dd>
 
-**request:** `Earth.weather.past.ForecastHourlyRequest`
-
+**request:** `Earth.weather.past.ForecastHourlyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions`
+**requestOptions:** `Forecast.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>

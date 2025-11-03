@@ -1,2 +1,2 @@
-export { EarthError } from "./EarthError";
-export { EarthTimeoutError } from "./EarthTimeoutError";
+export { EarthError } from "./EarthError.js";
+export { EarthTimeoutError } from "./EarthTimeoutError.js";

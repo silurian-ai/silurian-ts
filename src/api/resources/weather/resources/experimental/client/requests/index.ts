@@ -1,1 +1,1 @@
-export { type ExperimentalExtendedRequest } from "./ExperimentalExtendedRequest";
+export type { ExperimentalExtendedRequest } from "./ExperimentalExtendedRequest.js";
