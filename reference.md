@@ -1,4 +1,301 @@
 # Reference
+## Portfolios
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">features</a>(portfolioId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a GeoJSON FeatureCollection of features for a portfolio.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.portfolios.features("portfolio_id", {
+    x: 1,
+    y: 1,
+    z: 1,
+    country: "country"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**portfolioId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Earth.PortfoliosFeaturesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Portfolios.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">forecasts</a>(portfolioId, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a GeoJSON FeatureCollection of forecasts for a portfolio.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.portfolios.forecasts("portfolio_id", {
+    init_time: "2024-01-15T09:30:00Z"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**portfolioId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Earth.PortfoliosForecastsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Portfolios.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">observations</a>(portfolioId, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a GeoJSON FeatureCollection of observations for a portfolio.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.portfolios.observations("portfolio_id", {
+    valid_time_start: "2024-01-15T09:30:00Z",
+    valid_time_end: "2024-01-15T09:30:00Z"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**portfolioId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Earth.PortfoliosObservationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Portfolios.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">initTime</a>(portfolioId, { ...params }) -> string</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return the latest initialization time for a portfolio.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.portfolios.initTime("portfolio_id", {
+    time: "2024-01-15T09:30:00Z"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**portfolioId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Earth.PortfoliosInitTimeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Portfolios.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Cyclones Forecasts
 <details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">list</a>({ ...params }) -> Earth.CycloneForecastResponse[]</code></summary>
 <dl>

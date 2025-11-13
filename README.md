@@ -40,7 +40,7 @@ following namespace:
 ```typescript
 import { Earth } from "silurian";
 
-const request: Earth.ForecastsListRequest = {
+const request: Earth.PortfoliosFeaturesRequest = {
     ...
 };
 ```
