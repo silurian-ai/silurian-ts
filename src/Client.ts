@@ -26,8 +26,8 @@ export class EarthClient {
                 {
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "silurian",
-                    "X-Fern-SDK-Version": "0.0.18",
-                    "User-Agent": "silurian/0.0.18",
+                    "X-Fern-SDK-Version": "0.0.19",
+                    "User-Agent": "silurian/0.0.19",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
