@@ -43,7 +43,45 @@ describe("ForecastsClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.list();
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("list (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.list();
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("list (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -56,6 +94,25 @@ describe("ForecastsClient", () => {
         await expect(async () => {
             return await client.cyclones.forecasts.list();
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("list (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.list();
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("track (1)", async () => {
@@ -95,7 +152,45 @@ describe("ForecastsClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/track")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.track("storm_id");
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("track (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/track")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.track("storm_id");
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("track (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -108,6 +203,25 @@ describe("ForecastsClient", () => {
         await expect(async () => {
             return await client.cyclones.forecasts.track("storm_id");
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("track (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/track")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.track("storm_id");
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("cone (1)", async () => {
@@ -148,7 +262,45 @@ describe("ForecastsClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/cone")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.cone("storm_id");
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("cone (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/cone")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.cone("storm_id");
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("cone (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -161,5 +313,24 @@ describe("ForecastsClient", () => {
         await expect(async () => {
             return await client.cyclones.forecasts.cone("storm_id");
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("cone (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/cyclones/forecasts/storm_id/cone")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.cyclones.forecasts.cone("storm_id");
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 });

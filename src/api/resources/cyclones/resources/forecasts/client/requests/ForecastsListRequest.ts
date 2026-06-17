@@ -16,5 +16,5 @@ export interface ForecastsListRequest {
     time?: string;
     min_storm_category?: number;
     basin_ids?: string | string[];
-    model?: Earth.ModelName;
+    model?: Earth.cyclones.ForecastsListRequestModel;
 }

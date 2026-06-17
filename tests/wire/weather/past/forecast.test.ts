@@ -86,7 +86,53 @@ describe("ForecastClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/daily")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.daily({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("daily (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/daily")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.daily({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("daily (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -103,6 +149,29 @@ describe("ForecastClient", () => {
                 time: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("daily (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/daily")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.daily({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("hourly (1)", async () => {
@@ -184,7 +253,53 @@ describe("ForecastClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/hourly")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.hourly({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("hourly (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/hourly")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.hourly({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("hourly (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -201,5 +316,28 @@ describe("ForecastClient", () => {
                 time: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("hourly (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/past/forecast/hourly")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.past.forecast.hourly({
+                latitude: 1.1,
+                longitude: 1.1,
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 });

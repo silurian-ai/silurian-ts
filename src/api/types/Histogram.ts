@@ -2,6 +2,8 @@
 
 import type * as Earth from "../index.js";
 
-export interface HttpValidationError {
-    detail?: Earth.ValidationError[] | undefined;
+export interface Histogram {
+    buckets: Earth.Bucket[];
+    count: number;
+    sum: number;
 }

@@ -17,5 +17,5 @@ export interface ForecastsConeRequest {
     /** *Value must be > P0D* */
     max_lead_time?: string;
     smooth_cone?: boolean;
-    model?: Earth.ModelName;
+    model?: Earth.cyclones.ForecastsConeRequestModel;
 }

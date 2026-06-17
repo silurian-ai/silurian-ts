@@ -31,7 +31,10 @@ export class RegionalClient {
      * @param {Earth.weather.experimental.RegionalUsaRequest} request
      * @param {RegionalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Earth.UnauthorizedError}
+     * @throws {@link Earth.NotFoundError}
      * @throws {@link Earth.UnprocessableEntityError}
+     * @throws {@link Earth.InternalServerError}
      *
      * @example
      *     await client.weather.experimental.regional.usa({
@@ -91,11 +94,14 @@ export class RegionalClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
+                case 401:
+                    throw new Earth.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Earth.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new Earth.UnprocessableEntityError(
-                        _response.error.body as Earth.HttpValidationError,
-                        _response.rawResponse,
-                    );
+                    throw new Earth.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Earth.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.EarthError({
                         statusCode: _response.error.statusCode,

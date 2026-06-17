@@ -43,7 +43,45 @@ describe("PortfoliosClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/features")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.features("portfolio_id");
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("features (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/features")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.features("portfolio_id");
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("features (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -56,6 +94,25 @@ describe("PortfoliosClient", () => {
         await expect(async () => {
             return await client.portfolios.features("portfolio_id");
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("features (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/features")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.features("portfolio_id");
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("forecasts (1)", async () => {
@@ -95,7 +152,49 @@ describe("PortfoliosClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/forecasts")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.forecasts("portfolio_id", {
+                init_time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("forecasts (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/forecasts")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.forecasts("portfolio_id", {
+                init_time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("forecasts (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -110,6 +209,27 @@ describe("PortfoliosClient", () => {
                 init_time: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("forecasts (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/forecasts")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.forecasts("portfolio_id", {
+                init_time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("observations (1)", async () => {
@@ -150,7 +270,51 @@ describe("PortfoliosClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/observations")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.observations("portfolio_id", {
+                valid_time_start: "2024-01-15T09:30:00Z",
+                valid_time_end: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("observations (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/observations")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.observations("portfolio_id", {
+                valid_time_start: "2024-01-15T09:30:00Z",
+                valid_time_end: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("observations (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -166,6 +330,28 @@ describe("PortfoliosClient", () => {
                 valid_time_end: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("observations (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/observations")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.observations("portfolio_id", {
+                valid_time_start: "2024-01-15T09:30:00Z",
+                valid_time_end: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 
     test("init_time (1)", async () => {
@@ -192,7 +378,49 @@ describe("PortfoliosClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/init_time")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.initTime("portfolio_id", {
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("init_time (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/init_time")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.initTime("portfolio_id", {
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("init_time (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -207,5 +435,26 @@ describe("PortfoliosClient", () => {
                 time: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("init_time (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/portfolios/portfolio_id/init_time")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.portfolios.initTime("portfolio_id", {
+                time: "2024-01-15T09:30:00Z",
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 });

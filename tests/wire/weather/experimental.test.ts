@@ -83,7 +83,51 @@ describe("ExperimentalClient", () => {
         const server = mockServerPool.createServer();
         const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/experimental/extended")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.experimental.extended({
+                latitude: 1.1,
+                longitude: 1.1,
+            });
+        }).rejects.toThrow(Earth.UnauthorizedError);
+    });
+
+    test("extended (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/experimental/extended")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.experimental.extended({
+                latitude: 1.1,
+                longitude: 1.1,
+            });
+        }).rejects.toThrow(Earth.NotFoundError);
+    });
+
+    test("extended (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -99,5 +143,27 @@ describe("ExperimentalClient", () => {
                 longitude: 1.1,
             });
         }).rejects.toThrow(Earth.UnprocessableEntityError);
+    });
+
+    test("extended (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/experimental/extended")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.weather.experimental.extended({
+                latitude: 1.1,
+                longitude: 1.1,
+            });
+        }).rejects.toThrow(Earth.InternalServerError);
     });
 });

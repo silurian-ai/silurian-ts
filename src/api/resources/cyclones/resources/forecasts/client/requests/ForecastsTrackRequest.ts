@@ -15,5 +15,5 @@ export interface ForecastsTrackRequest {
     time?: string;
     /** *Value must be > P0D* */
     max_lead_time?: string;
-    model?: Earth.ModelName;
+    model?: Earth.cyclones.ForecastsTrackRequestModel;
 }
