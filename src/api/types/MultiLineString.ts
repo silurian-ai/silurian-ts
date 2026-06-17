@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * MultiLineString Model
  */
 export interface MultiLineString {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: MultiLineString.Coordinates.Item[][];
 }
 

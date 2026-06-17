@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * Polygon Model
  */
 export interface Polygon {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: Polygon.Coordinates.Item[][];
 }
 

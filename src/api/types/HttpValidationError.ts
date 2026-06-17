@@ -3,5 +3,5 @@
 import type * as Earth from "../index.js";
 
 export interface HttpValidationError {
-    detail?: Earth.ValidationError[];
+    detail?: Earth.ValidationError[] | undefined;
 }

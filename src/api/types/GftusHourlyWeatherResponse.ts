@@ -8,7 +8,7 @@ export interface GftusHourlyWeatherResponse {
     forecast_time: string;
     timezone: string;
     utc_offset: number;
-    elevation?: number;
+    elevation?: number | undefined;
     units: Earth.GftusBaseUnits;
     hourly: Earth.GftusHourlyConditions[];
 }

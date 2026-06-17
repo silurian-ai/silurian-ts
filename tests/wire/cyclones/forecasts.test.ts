@@ -4,10 +4,10 @@ import * as Earth from "../../../src/api/index";
 import { EarthClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
-describe("Forecasts", () => {
+describe("ForecastsClient", () => {
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = [
             {
@@ -21,6 +21,7 @@ describe("Forecasts", () => {
                 forecast_last_updated: "2024-01-15T09:30:00Z",
             },
         ];
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts")
@@ -32,30 +33,18 @@ describe("Forecasts", () => {
         const response = await client.cyclones.forecasts.list({
             time: "2024-01-15T09:30:00Z",
             min_storm_category: 1,
+            basin_ids: ["basin_ids"],
             model: "OFCL",
         });
-        expect(response).toEqual([
-            {
-                storm_id: "storm_id",
-                storm_name: "storm_name",
-                type: "type",
-                category: 1,
-                position: {
-                    latitude: 1.1,
-                    longitude: 1.1,
-                },
-                forecast_time: "2024-01-15T09:30:00Z",
-                forecast_source_info: "forecast_source_info",
-                forecast_last_updated: "2024-01-15T09:30:00Z",
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts")
@@ -71,7 +60,7 @@ describe("Forecasts", () => {
 
     test("track (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             bbox: [{ key: "value" }],
@@ -85,6 +74,7 @@ describe("Forecasts", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts/storm_id/track")
@@ -98,39 +88,15 @@ describe("Forecasts", () => {
             max_lead_time: "max_lead_time",
             model: "OFCL",
         });
-        expect(response).toEqual({
-            bbox: [
-                {
-                    key: "value",
-                },
-            ],
-            type: "FeatureCollection",
-            features: [
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "GeometryCollection",
-                        geometries: [
-                            {
-                                type: "LineString",
-                                coordinates: [[]],
-                            },
-                        ],
-                    },
-                    properties: {
-                        key: "value",
-                    },
-                    id: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("track (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts/storm_id/track")
@@ -146,7 +112,7 @@ describe("Forecasts", () => {
 
     test("cone (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             bbox: [{ key: "value" }],
@@ -160,6 +126,7 @@ describe("Forecasts", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts/storm_id/cone")
@@ -174,39 +141,15 @@ describe("Forecasts", () => {
             smooth_cone: true,
             model: "OFCL",
         });
-        expect(response).toEqual({
-            bbox: [
-                {
-                    key: "value",
-                },
-            ],
-            type: "FeatureCollection",
-            features: [
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "GeometryCollection",
-                        geometries: [
-                            {
-                                type: "LineString",
-                                coordinates: [[]],
-                            },
-                        ],
-                    },
-                    properties: {
-                        key: "value",
-                    },
-                    id: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("cone (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/cyclones/forecasts/storm_id/cone")

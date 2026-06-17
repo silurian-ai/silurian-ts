@@ -4,10 +4,10 @@ import * as Earth from "../../../../../src/api/index";
 import { EarthClient } from "../../../../../src/Client";
 import { mockServerPool } from "../../../../mock-server/MockServerPool";
 
-describe("Regional", () => {
+describe("RegionalClient", () => {
     test("usa (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             latitude: 1.1,
@@ -52,6 +52,7 @@ describe("Regional", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/experimental/past/regional/usa")
@@ -67,56 +68,15 @@ describe("Regional", () => {
             timezone: "local",
             units: "metric",
         });
-        expect(response).toEqual({
-            latitude: 1.1,
-            longitude: 1.1,
-            forecast_time: "2024-01-15T09:30:00Z",
-            timezone: "America/Los_Angeles",
-            utc_offset: -28800,
-            elevation: 1,
-            units: {
-                elevation: "elevation",
-                temperature: "temperature",
-                humidity: "humidity",
-                wind_speed: "wind_speed",
-                wind_direction: "wind_direction",
-                wind_speed_80m: "wind_speed_80m",
-                wind_direction_80m: "wind_direction_80m",
-                dewpoint_temperature: "dewpoint_temperature",
-                feels_like_temperature: "feels_like_temperature",
-                pressure: "pressure",
-                downward_solar_radiation: "downward_solar_radiation",
-                precipitation_accumulation: "precipitation_accumulation",
-                precipitation_probability: "precipitation_probability",
-                cloud_cover: "cloud_cover",
-            },
-            hourly: [
-                {
-                    timestamp: "2024-01-15T09:30:00Z",
-                    temperature: 1.1,
-                    humidity: 1,
-                    wind_speed: 1.1,
-                    wind_gust: 1.1,
-                    wind_direction: 1.1,
-                    wind_speed_80m: 1.1,
-                    wind_direction_80m: 1.1,
-                    dewpoint_temperature: 1.1,
-                    feels_like_temperature: 1.1,
-                    pressure: 1.1,
-                    precipitation_accumulation: 1.1,
-                    precipitation_probability: 1,
-                    cloud_cover: 1,
-                    downward_solar_radiation: 1.1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("usa (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/experimental/past/regional/usa")

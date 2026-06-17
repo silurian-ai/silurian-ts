@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * GeoJSON FeatureCollection for time-series features.
  */
 export interface TimeSeriesFeatureCollectionModel {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     type: "FeatureCollection";
     features: Earth.TimeSeriesFeatureModel[];
 }

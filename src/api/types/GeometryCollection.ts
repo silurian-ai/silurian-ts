@@ -6,6 +6,6 @@ import type * as Earth from "../index.js";
  * GeometryCollection Model
  */
 export interface GeometryCollection {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     geometries: Earth.GeometryCollectionGeometriesItem[];
 }

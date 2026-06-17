@@ -1,6 +1,6 @@
 # Reference
 ## Portfolios
-<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">features</a>(portfolioId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">features</a>(portfolio_id, { ...params }) -> Earth.FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -48,7 +48,7 @@ await client.portfolios.features("portfolio_id", {
 <dl>
 <dd>
 
-**portfolioId:** `string` 
+**portfolio_id:** `string` 
     
 </dd>
 </dl>
@@ -64,7 +64,7 @@ await client.portfolios.features("portfolio_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Portfolios.RequestOptions` 
+**requestOptions:** `PortfoliosClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -76,7 +76,7 @@ await client.portfolios.features("portfolio_id", {
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">forecasts</a>(portfolioId, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">forecasts</a>(portfolio_id, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
 <dl>
 <dd>
 
@@ -104,6 +104,8 @@ Return a GeoJSON FeatureCollection of forecasts for a portfolio.
 
 ```typescript
 await client.portfolios.forecasts("portfolio_id", {
+    id: ["id"],
+    variables: ["variables"],
     init_time: "2024-01-15T09:30:00Z"
 });
 
@@ -121,7 +123,7 @@ await client.portfolios.forecasts("portfolio_id", {
 <dl>
 <dd>
 
-**portfolioId:** `string` 
+**portfolio_id:** `string` 
     
 </dd>
 </dl>
@@ -137,7 +139,7 @@ await client.portfolios.forecasts("portfolio_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Portfolios.RequestOptions` 
+**requestOptions:** `PortfoliosClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -149,7 +151,7 @@ await client.portfolios.forecasts("portfolio_id", {
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">observations</a>(portfolioId, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">observations</a>(portfolio_id, { ...params }) -> Earth.TimeSeriesFeatureCollectionModel</code></summary>
 <dl>
 <dd>
 
@@ -177,6 +179,8 @@ Return a GeoJSON FeatureCollection of observations for a portfolio.
 
 ```typescript
 await client.portfolios.observations("portfolio_id", {
+    id: ["id"],
+    variables: ["variables"],
     valid_time_start: "2024-01-15T09:30:00Z",
     valid_time_end: "2024-01-15T09:30:00Z"
 });
@@ -195,7 +199,7 @@ await client.portfolios.observations("portfolio_id", {
 <dl>
 <dd>
 
-**portfolioId:** `string` 
+**portfolio_id:** `string` 
     
 </dd>
 </dl>
@@ -211,7 +215,7 @@ await client.portfolios.observations("portfolio_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Portfolios.RequestOptions` 
+**requestOptions:** `PortfoliosClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -223,7 +227,7 @@ await client.portfolios.observations("portfolio_id", {
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">initTime</a>(portfolioId, { ...params }) -> string</code></summary>
+<details><summary><code>client.portfolios.<a href="/src/api/resources/portfolios/client/Client.ts">initTime</a>(portfolio_id, { ...params }) -> string</code></summary>
 <dl>
 <dd>
 
@@ -268,7 +272,7 @@ await client.portfolios.initTime("portfolio_id", {
 <dl>
 <dd>
 
-**portfolioId:** `string` 
+**portfolio_id:** `string` 
     
 </dd>
 </dl>
@@ -284,7 +288,7 @@ await client.portfolios.initTime("portfolio_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Portfolios.RequestOptions` 
+**requestOptions:** `PortfoliosClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -327,6 +331,7 @@ Query the available cyclone forecasts for a particular time
 await client.cyclones.forecasts.list({
     time: "2024-01-15T09:30:00Z",
     min_storm_category: 1,
+    basin_ids: ["basin_ids"],
     model: "OFCL"
 });
 
@@ -352,7 +357,7 @@ await client.cyclones.forecasts.list({
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions` 
+**requestOptions:** `ForecastsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -364,7 +369,7 @@ await client.cyclones.forecasts.list({
 </dl>
 </details>
 
-<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">track</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">track</a>(storm_id, { ...params }) -> Earth.FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -411,7 +416,7 @@ await client.cyclones.forecasts.track("storm_id", {
 <dl>
 <dd>
 
-**stormId:** `string` 
+**storm_id:** `string` 
     
 </dd>
 </dl>
@@ -427,7 +432,7 @@ await client.cyclones.forecasts.track("storm_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions` 
+**requestOptions:** `ForecastsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -439,7 +444,7 @@ await client.cyclones.forecasts.track("storm_id", {
 </dl>
 </details>
 
-<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">cone</a>(stormId, { ...params }) -> Earth.FeatureCollection</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="/src/api/resources/cyclones/resources/forecasts/client/Client.ts">cone</a>(storm_id, { ...params }) -> Earth.FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -487,7 +492,7 @@ await client.cyclones.forecasts.cone("storm_id", {
 <dl>
 <dd>
 
-**stormId:** `string` 
+**storm_id:** `string` 
     
 </dd>
 </dl>
@@ -503,7 +508,7 @@ await client.cyclones.forecasts.cone("storm_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Forecasts.RequestOptions` 
+**requestOptions:** `ForecastsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -574,7 +579,7 @@ await client.weather.forecast.daily({
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions` 
+**requestOptions:** `ForecastClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -643,7 +648,7 @@ await client.weather.forecast.hourly({
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions` 
+**requestOptions:** `ForecastClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -712,7 +717,7 @@ await client.weather.experimental.extended({
 <dl>
 <dd>
 
-**requestOptions:** `Experimental.RequestOptions` 
+**requestOptions:** `ExperimentalClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -781,7 +786,7 @@ await client.weather.experimental.regional.usa({
 <dl>
 <dd>
 
-**requestOptions:** `Regional.RequestOptions` 
+**requestOptions:** `RegionalClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -823,7 +828,7 @@ await client.weather.experimental.personalized.totalEnergies();
 <dl>
 <dd>
 
-**requestOptions:** `Personalized.RequestOptions` 
+**requestOptions:** `PersonalizedClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -893,7 +898,7 @@ await client.weather.experimental.past.regional.usa({
 <dl>
 <dd>
 
-**requestOptions:** `Regional.RequestOptions` 
+**requestOptions:** `RegionalClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -963,7 +968,7 @@ await client.weather.past.forecast.daily({
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions` 
+**requestOptions:** `ForecastClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1032,7 +1037,7 @@ await client.weather.past.forecast.hourly({
 <dl>
 <dd>
 
-**requestOptions:** `Forecast.RequestOptions` 
+**requestOptions:** `ForecastClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1043,3 +1048,4 @@ await client.weather.past.forecast.hourly({
 </dd>
 </dl>
 </details>
+

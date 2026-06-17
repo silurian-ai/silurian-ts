@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * MultiPolygon Model
  */
 export interface MultiPolygon {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: MultiPolygon.Coordinates.Item[][][];
 }
 

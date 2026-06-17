@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * FeatureCollection Model
  */
 export interface FeatureCollection {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     type: "FeatureCollection";
     features: Earth.Feature[];
 }

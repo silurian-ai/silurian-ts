@@ -3,16 +3,16 @@
 export interface GftusBaseUnits {
     elevation: string;
     temperature: string;
-    humidity?: string;
+    humidity?: string | undefined;
     wind_speed: string;
-    wind_direction?: string;
+    wind_direction?: string | undefined;
     wind_speed_80m: string;
-    wind_direction_80m?: string;
+    wind_direction_80m?: string | undefined;
     dewpoint_temperature: string;
     feels_like_temperature: string;
     pressure: string;
     downward_solar_radiation: string;
     precipitation_accumulation: string;
-    precipitation_probability?: string;
-    cloud_cover?: string;
+    precipitation_probability?: string | undefined;
+    cloud_cover?: string | undefined;
 }

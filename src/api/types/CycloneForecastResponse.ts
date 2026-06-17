@@ -5,7 +5,7 @@ import type * as Earth from "../index.js";
 export interface CycloneForecastResponse {
     storm_id: string;
     storm_name: string;
-    type?: string;
+    type?: string | undefined;
     category: number;
     position: Earth.GeoLocation;
     forecast_time: string;

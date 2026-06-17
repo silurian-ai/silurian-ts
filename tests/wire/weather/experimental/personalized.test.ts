@@ -3,10 +3,10 @@
 import { EarthClient } from "../../../../src/Client";
 import { mockServerPool } from "../../../mock-server/MockServerPool";
 
-describe("Personalized", () => {
+describe("PersonalizedClient", () => {
     test("total-energies", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         server.mockEndpoint().get("/experimental/personalized/total-energies").respondWith().statusCode(200).build();
 

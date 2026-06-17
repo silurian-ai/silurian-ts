@@ -3,6 +3,8 @@
 /**
  * @example
  *     {
+ *         id: ["id"],
+ *         variables: ["variables"],
  *         valid_time_start: "2024-01-15T09:30:00Z",
  *         valid_time_end: "2024-01-15T09:30:00Z"
  *     }

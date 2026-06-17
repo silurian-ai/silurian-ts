@@ -6,11 +6,11 @@ import type * as Earth from "../index.js";
  * Feature Model
  */
 export interface Feature {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     type: "Feature";
-    geometry?: Earth.FeatureGeometry;
-    properties?: Feature.Properties;
-    id?: Feature.Id;
+    geometry?: Earth.FeatureGeometry | undefined;
+    properties?: Feature.Properties | undefined;
+    id?: Feature.Id | undefined;
 }
 
 export namespace Feature {

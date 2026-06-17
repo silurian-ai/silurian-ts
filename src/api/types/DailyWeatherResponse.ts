@@ -8,7 +8,7 @@ export interface DailyWeatherResponse {
     forecast_time: string;
     timezone: string;
     utc_offset: number;
-    elevation?: number;
+    elevation?: number | undefined;
     units: DailyWeatherResponse.Units;
     daily: Earth.DailyConditions[];
 }

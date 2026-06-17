@@ -2,18 +2,18 @@
 
 export interface GftusHourlyConditions {
     timestamp: string;
-    temperature?: number;
-    humidity?: number;
-    wind_speed?: number;
-    wind_gust?: number;
-    wind_direction?: number;
-    wind_speed_80m?: number;
-    wind_direction_80m?: number;
-    dewpoint_temperature?: number;
-    feels_like_temperature?: number;
-    pressure?: number;
-    precipitation_accumulation?: number;
-    precipitation_probability?: number;
-    cloud_cover?: number;
-    downward_solar_radiation?: number;
+    temperature?: number | undefined;
+    humidity?: number | undefined;
+    wind_speed?: number | undefined;
+    wind_gust?: number | undefined;
+    wind_direction?: number | undefined;
+    wind_speed_80m?: number | undefined;
+    wind_direction_80m?: number | undefined;
+    dewpoint_temperature?: number | undefined;
+    feels_like_temperature?: number | undefined;
+    pressure?: number | undefined;
+    precipitation_accumulation?: number | undefined;
+    precipitation_probability?: number | undefined;
+    cloud_cover?: number | undefined;
+    downward_solar_radiation?: number | undefined;
 }

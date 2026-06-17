@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * MultiPoint Model
  */
 export interface MultiPoint {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: MultiPoint.Coordinates.Item[];
 }
 

@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * Point Model
  */
 export interface Point {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: Point.Coordinates;
 }
 

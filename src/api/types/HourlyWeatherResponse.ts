@@ -8,7 +8,7 @@ export interface HourlyWeatherResponse {
     forecast_time: string;
     timezone: string;
     utc_offset: number;
-    elevation?: number;
+    elevation?: number | undefined;
     units: HourlyWeatherResponse.Units;
     hourly: Earth.HourlyConditions[];
 }

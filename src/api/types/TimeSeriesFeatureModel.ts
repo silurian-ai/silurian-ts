@@ -6,11 +6,11 @@ import type * as Earth from "../index.js";
  * GeoJSON Feature with time-series properties.
  */
 export interface TimeSeriesFeatureModel {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     type: "Feature";
-    geometry?: Earth.TimeSeriesFeatureModelGeometry;
-    properties?: Earth.TimeSeriesPropertiesModel;
-    id?: TimeSeriesFeatureModel.Id;
+    geometry?: Earth.TimeSeriesFeatureModelGeometry | undefined;
+    properties?: Earth.TimeSeriesPropertiesModel | undefined;
+    id?: TimeSeriesFeatureModel.Id | undefined;
 }
 
 export namespace TimeSeriesFeatureModel {

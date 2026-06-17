@@ -4,10 +4,10 @@ import * as Earth from "../../src/api/index";
 import { EarthClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Portfolios", () => {
+describe("PortfoliosClient", () => {
     test("features (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             bbox: [{ key: "value" }],
@@ -21,6 +21,7 @@ describe("Portfolios", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/features")
@@ -35,39 +36,15 @@ describe("Portfolios", () => {
             z: 1,
             country: "country",
         });
-        expect(response).toEqual({
-            bbox: [
-                {
-                    key: "value",
-                },
-            ],
-            type: "FeatureCollection",
-            features: [
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "GeometryCollection",
-                        geometries: [
-                            {
-                                type: "LineString",
-                                coordinates: [[]],
-                            },
-                        ],
-                    },
-                    properties: {
-                        key: "value",
-                    },
-                    id: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("features (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/features")
@@ -83,7 +60,7 @@ describe("Portfolios", () => {
 
     test("forecasts (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             bbox: [{ key: "value" }],
@@ -97,6 +74,7 @@ describe("Portfolios", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/forecasts")
@@ -106,44 +84,19 @@ describe("Portfolios", () => {
             .build();
 
         const response = await client.portfolios.forecasts("portfolio_id", {
+            id: ["id"],
+            variables: ["variables"],
             init_time: "2024-01-15T09:30:00Z",
         });
-        expect(response).toEqual({
-            bbox: [
-                {
-                    key: "value",
-                },
-            ],
-            type: "FeatureCollection",
-            features: [
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "GeometryCollection",
-                        geometries: [
-                            {
-                                type: "LineString",
-                                coordinates: [[]],
-                            },
-                        ],
-                    },
-                    properties: {
-                        datetimes: ["2024-01-15T09:30:00Z"],
-                        static: {
-                            key: "value",
-                        },
-                    },
-                    id: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("forecasts (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/forecasts")
@@ -161,7 +114,7 @@ describe("Portfolios", () => {
 
     test("observations (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             bbox: [{ key: "value" }],
@@ -175,6 +128,7 @@ describe("Portfolios", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/observations")
@@ -184,45 +138,20 @@ describe("Portfolios", () => {
             .build();
 
         const response = await client.portfolios.observations("portfolio_id", {
+            id: ["id"],
+            variables: ["variables"],
             valid_time_start: "2024-01-15T09:30:00Z",
             valid_time_end: "2024-01-15T09:30:00Z",
         });
-        expect(response).toEqual({
-            bbox: [
-                {
-                    key: "value",
-                },
-            ],
-            type: "FeatureCollection",
-            features: [
-                {
-                    type: "Feature",
-                    geometry: {
-                        type: "GeometryCollection",
-                        geometries: [
-                            {
-                                type: "LineString",
-                                coordinates: [[]],
-                            },
-                        ],
-                    },
-                    properties: {
-                        datetimes: ["2024-01-15T09:30:00Z"],
-                        static: {
-                            key: "value",
-                        },
-                    },
-                    id: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("observations (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/observations")
@@ -241,9 +170,10 @@ describe("Portfolios", () => {
 
     test("init_time (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = "2024-01-15T09:30:00Z";
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/init_time")
@@ -255,14 +185,15 @@ describe("Portfolios", () => {
         const response = await client.portfolios.initTime("portfolio_id", {
             time: "2024-01-15T09:30:00Z",
         });
-        expect(response).toEqual("2024-01-15T09:30:00Z");
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("init_time (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new EarthClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new EarthClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .get("/portfolios/portfolio_id/init_time")

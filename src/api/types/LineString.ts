@@ -6,7 +6,7 @@ import type * as Earth from "../index.js";
  * LineString Model
  */
 export interface LineString {
-    bbox?: unknown[];
+    bbox?: unknown[] | undefined;
     coordinates: LineString.Coordinates.Item[];
 }
 

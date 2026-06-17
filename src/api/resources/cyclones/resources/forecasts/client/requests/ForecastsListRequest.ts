@@ -7,6 +7,7 @@ import type * as Earth from "../../../../../../index.js";
  *     {
  *         time: "2024-01-15T09:30:00Z",
  *         min_storm_category: 1,
+ *         basin_ids: ["basin_ids"],
  *         model: "OFCL"
  *     }
  */
