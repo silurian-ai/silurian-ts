@@ -8,10 +8,10 @@
         "noSerdeLayer": true,
         "enableInlineTypes": true
     },
-    "originGitCommit": "d1edaba6679cb6c183541ef1416d1e66dfbdde8e",
+    "originGitCommit": "63c1cdb10b86987870529b842cb291059cc429ce",
     "originGitCommitIsDirty": false,
     "invokedBy": "ci",
-    "requestedVersion": "0.0.24",
+    "requestedVersion": "0.1.0",
     "ciProvider": "github",
-    "sdkVersion": "0.0.24"
+    "sdkVersion": "0.1.0"
 }

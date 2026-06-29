@@ -2,7 +2,6 @@
 
 import type { BaseClientOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { ExperimentalClient } from "../resources/experimental/client/Client.js";
 import { ForecastClient } from "../resources/forecast/client/Client.js";
 import { PastClient } from "../resources/past/client/Client.js";
 
@@ -13,19 +12,14 @@ export declare namespace WeatherClient {
 export class WeatherClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<WeatherClient.Options>;
     protected _forecast: ForecastClient | undefined;
-    protected _experimental: ExperimentalClient | undefined;
     protected _past: PastClient | undefined;
 
-    constructor(options: WeatherClient.Options = {}) {
+    constructor(options: WeatherClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
     public get forecast(): ForecastClient {
         return (this._forecast ??= new ForecastClient(this._options));
-    }
-
-    public get experimental(): ExperimentalClient {
-        return (this._experimental ??= new ExperimentalClient(this._options));
     }
 
     public get past(): PastClient {

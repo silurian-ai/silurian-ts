@@ -1,6 +1,6 @@
 {
     "name": "silurian",
-    "version": "0.0.24",
+    "version": "0.1.0",
     "private": false,
     "repository": {
         "type": "git",
@@ -76,61 +76,6 @@
                 "default": "./dist/cjs/api/resources/weather/resources/forecast/exports.js"
             },
             "default": "./dist/cjs/api/resources/weather/resources/forecast/exports.js"
-        },
-        "./weather/experimental": {
-            "import": {
-                "types": "./dist/esm/api/resources/weather/resources/experimental/exports.d.mts",
-                "default": "./dist/esm/api/resources/weather/resources/experimental/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/weather/resources/experimental/exports.d.ts",
-                "default": "./dist/cjs/api/resources/weather/resources/experimental/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/weather/resources/experimental/exports.js"
-        },
-        "./weather/experimental/regional": {
-            "import": {
-                "types": "./dist/esm/api/resources/weather/resources/experimental/resources/regional/exports.d.mts",
-                "default": "./dist/esm/api/resources/weather/resources/experimental/resources/regional/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/weather/resources/experimental/resources/regional/exports.d.ts",
-                "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/regional/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/regional/exports.js"
-        },
-        "./weather/experimental/personalized": {
-            "import": {
-                "types": "./dist/esm/api/resources/weather/resources/experimental/resources/personalized/exports.d.mts",
-                "default": "./dist/esm/api/resources/weather/resources/experimental/resources/personalized/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/weather/resources/experimental/resources/personalized/exports.d.ts",
-                "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/personalized/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/personalized/exports.js"
-        },
-        "./weather/experimental/past": {
-            "import": {
-                "types": "./dist/esm/api/resources/weather/resources/experimental/resources/past/exports.d.mts",
-                "default": "./dist/esm/api/resources/weather/resources/experimental/resources/past/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/exports.d.ts",
-                "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/exports.js"
-        },
-        "./weather/experimental/past/regional": {
-            "import": {
-                "types": "./dist/esm/api/resources/weather/resources/experimental/resources/past/resources/regional/exports.d.mts",
-                "default": "./dist/esm/api/resources/weather/resources/experimental/resources/past/resources/regional/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/resources/regional/exports.d.ts",
-                "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/resources/regional/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/weather/resources/experimental/resources/past/resources/regional/exports.js"
         },
         "./weather/past": {
             "import": {

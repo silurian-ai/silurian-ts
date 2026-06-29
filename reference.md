@@ -27,7 +27,7 @@ Return a GeoJSON FeatureCollection of features for a portfolio.
 <dd>
 
 ```typescript
-await client.portfolios.features("portfolio_id", {
+await client.portfolios.features("my-portfolio", {
     x: 1,
     y: 1,
     z: 1,
@@ -103,9 +103,9 @@ Return a GeoJSON FeatureCollection of forecasts for a portfolio.
 <dd>
 
 ```typescript
-await client.portfolios.forecasts("portfolio_id", {
-    id: ["id"],
-    variables: ["variables"],
+await client.portfolios.forecasts("my-portfolio", {
+    id: ["station_A", "station_B"],
+    variables: ["temperature", "wind_speed"],
     init_time: "2024-01-15T09:30:00Z"
 });
 
@@ -178,9 +178,9 @@ Return a GeoJSON FeatureCollection of observations for a portfolio.
 <dd>
 
 ```typescript
-await client.portfolios.observations("portfolio_id", {
-    id: ["id"],
-    variables: ["variables"],
+await client.portfolios.observations("my-portfolio", {
+    id: ["station_A", "station_B"],
+    variables: ["temperature", "wind_speed"],
     valid_time_start: "2024-01-15T09:30:00Z",
     valid_time_end: "2024-01-15T09:30:00Z"
 });
@@ -254,7 +254,7 @@ Return the latest initialization time for a portfolio.
 <dd>
 
 ```typescript
-await client.portfolios.initTime("portfolio_id", {
+await client.portfolios.initTime("my-portfolio", {
     time: "2024-01-15T09:30:00Z"
 });
 
@@ -649,256 +649,6 @@ await client.weather.forecast.hourly({
 <dd>
 
 **requestOptions:** `ForecastClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Weather Experimental
-<details><summary><code>client.weather.experimental.<a href="/src/api/resources/weather/resources/experimental/client/Client.ts">extended</a>({ ...params }) -> Earth.HourlyWeatherResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get hourly weather forecast for a specific location and time
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.weather.experimental.extended({
-    latitude: 47.6061,
-    longitude: -122.3328,
-    timezone: "local",
-    units: "metric"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Earth.weather.ExperimentalExtendedRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ExperimentalClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Weather Experimental Regional
-<details><summary><code>client.weather.experimental.regional.<a href="/src/api/resources/weather/resources/experimental/resources/regional/client/Client.ts">usa</a>({ ...params }) -> Earth.GftusHourlyWeatherResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get hourly weather forecast for a specific location and time
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.weather.experimental.regional.usa({
-    latitude: 47.6061,
-    longitude: -122.3328,
-    timezone: "local",
-    units: "metric"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Earth.weather.experimental.RegionalUsaRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegionalClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Weather Experimental Personalized
-<details><summary><code>client.weather.experimental.personalized.<a href="/src/api/resources/weather/resources/experimental/resources/personalized/client/Client.ts">totalEnergies</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.weather.experimental.personalized.totalEnergies();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `PersonalizedClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Weather Experimental Past Regional
-<details><summary><code>client.weather.experimental.past.regional.<a href="/src/api/resources/weather/resources/experimental/resources/past/resources/regional/client/Client.ts">usa</a>({ ...params }) -> Earth.GftusHourlyWeatherResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get hourly weather forecast for a specific location and time
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.weather.experimental.past.regional.usa({
-    latitude: 47.6061,
-    longitude: -122.3328,
-    time: "2024-01-01T00:00:00Z",
-    timezone: "local",
-    units: "metric"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Earth.weather.experimental.past.RegionalUsaRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RegionalClient.RequestOptions` 
     
 </dd>
 </dl>

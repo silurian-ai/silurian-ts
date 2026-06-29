@@ -3,8 +3,8 @@
 /**
  * @example
  *     {
- *         id: ["id"],
- *         variables: ["variables"],
+ *         id: ["station_A", "station_B"],
+ *         variables: ["temperature", "wind_speed"],
  *         init_time: "2024-01-15T09:30:00Z"
  *     }
  */

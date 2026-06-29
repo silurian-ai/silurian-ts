@@ -12,7 +12,7 @@ export class CyclonesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CyclonesClient.Options>;
     protected _forecasts: ForecastsClient | undefined;
 
-    constructor(options: CyclonesClient.Options = {}) {
+    constructor(options: CyclonesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

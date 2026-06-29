@@ -12,7 +12,7 @@ export class PastClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PastClient.Options>;
     protected _forecast: ForecastClient | undefined;
 
-    constructor(options: PastClient.Options = {}) {
+    constructor(options: PastClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

@@ -24,13 +24,13 @@ describe("PortfoliosClient", () => {
 
         server
             .mockEndpoint()
-            .get("/portfolios/portfolio_id/features")
+            .get("/portfolios/my-portfolio/features")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.portfolios.features("portfolio_id", {
+        const response = await client.portfolios.features("my-portfolio", {
             x: 1,
             y: 1,
             z: 1,
@@ -134,15 +134,15 @@ describe("PortfoliosClient", () => {
 
         server
             .mockEndpoint()
-            .get("/portfolios/portfolio_id/forecasts")
+            .get("/portfolios/my-portfolio/forecasts")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.portfolios.forecasts("portfolio_id", {
-            id: ["id"],
-            variables: ["variables"],
+        const response = await client.portfolios.forecasts("my-portfolio", {
+            id: ["station_A", "station_B"],
+            variables: ["temperature", "wind_speed"],
             init_time: "2024-01-15T09:30:00Z",
         });
         expect(response).toEqual(rawResponseBody);
@@ -251,15 +251,15 @@ describe("PortfoliosClient", () => {
 
         server
             .mockEndpoint()
-            .get("/portfolios/portfolio_id/observations")
+            .get("/portfolios/my-portfolio/observations")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.portfolios.observations("portfolio_id", {
-            id: ["id"],
-            variables: ["variables"],
+        const response = await client.portfolios.observations("my-portfolio", {
+            id: ["station_A", "station_B"],
+            variables: ["temperature", "wind_speed"],
             valid_time_start: "2024-01-15T09:30:00Z",
             valid_time_end: "2024-01-15T09:30:00Z",
         });
@@ -362,13 +362,13 @@ describe("PortfoliosClient", () => {
 
         server
             .mockEndpoint()
-            .get("/portfolios/portfolio_id/init_time")
+            .get("/portfolios/my-portfolio/init_time")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.portfolios.initTime("portfolio_id", {
+        const response = await client.portfolios.initTime("my-portfolio", {
             time: "2024-01-15T09:30:00Z",
         });
         expect(response).toEqual(rawResponseBody);

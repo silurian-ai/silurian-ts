@@ -19,7 +19,7 @@ export class EarthClient {
     protected _cyclones: CyclonesClient | undefined;
     protected _weather: WeatherClient | undefined;
 
-    constructor(options: EarthClient.Options = {}) {
+    constructor(options: EarthClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

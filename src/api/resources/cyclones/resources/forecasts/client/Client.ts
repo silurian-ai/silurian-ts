@@ -18,7 +18,7 @@ export declare namespace ForecastsClient {
 export class ForecastsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ForecastsClient.Options>;
 
-    constructor(options: ForecastsClient.Options = {}) {
+    constructor(options: ForecastsClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

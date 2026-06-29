@@ -18,7 +18,7 @@ export declare namespace PortfoliosClient {
 export class PortfoliosClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PortfoliosClient.Options>;
 
-    constructor(options: PortfoliosClient.Options = {}) {
+    constructor(options: PortfoliosClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -35,7 +35,7 @@ export class PortfoliosClient {
      * @throws {@link Earth.InternalServerError}
      *
      * @example
-     *     await client.portfolios.features("portfolio_id", {
+     *     await client.portfolios.features("my-portfolio", {
      *         x: 1,
      *         y: 1,
      *         z: 1,
@@ -132,9 +132,9 @@ export class PortfoliosClient {
      * @throws {@link Earth.InternalServerError}
      *
      * @example
-     *     await client.portfolios.forecasts("portfolio_id", {
-     *         id: ["id"],
-     *         variables: ["variables"],
+     *     await client.portfolios.forecasts("my-portfolio", {
+     *         id: ["station_A", "station_B"],
+     *         variables: ["temperature", "wind_speed"],
      *         init_time: "2024-01-15T09:30:00Z"
      *     })
      */
@@ -230,9 +230,9 @@ export class PortfoliosClient {
      * @throws {@link Earth.InternalServerError}
      *
      * @example
-     *     await client.portfolios.observations("portfolio_id", {
-     *         id: ["id"],
-     *         variables: ["variables"],
+     *     await client.portfolios.observations("my-portfolio", {
+     *         id: ["station_A", "station_B"],
+     *         variables: ["temperature", "wind_speed"],
      *         valid_time_start: "2024-01-15T09:30:00Z",
      *         valid_time_end: "2024-01-15T09:30:00Z"
      *     })
@@ -330,7 +330,7 @@ export class PortfoliosClient {
      * @throws {@link Earth.InternalServerError}
      *
      * @example
-     *     await client.portfolios.initTime("portfolio_id", {
+     *     await client.portfolios.initTime("my-portfolio", {
      *         time: "2024-01-15T09:30:00Z"
      *     })
      */
